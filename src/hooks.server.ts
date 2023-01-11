@@ -3,12 +3,14 @@ import PocketBase from 'pocketbase';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	console.log('loading pb');
-	event.locals.pb = new PocketBase('http://127.0.0.1:8090');
+	event.locals.pb = new PocketBase('http://127.0.0.1:8091');
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
 
 	try {
 		if (event.locals.pb.authStore.isValid) {
-			await event.locals.pb.collection('users').authRefresh();
+			const { record } = await event.locals.pb.collection('users').authRefresh();
+			event.locals.user = { name: record.name };
+			console.log(event.locals.user);
 		}
 	} catch (err) {
 		event.locals.pb.authStore.clear();

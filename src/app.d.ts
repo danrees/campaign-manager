@@ -7,7 +7,9 @@ declare namespace App {
 	// interface PageData {}
 	// interface Platform {}
 	type PocketBase = import('pocketbase').default;
+	type User = import('$lib/user').User;
 	interface Locals {
 		pb?: PocketBase;
+		user?: User;
 	}
 }
