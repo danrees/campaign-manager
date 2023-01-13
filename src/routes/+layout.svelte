@@ -14,7 +14,7 @@
 		<TopAppBar variant="short" bind:this={topAppBar}>
 			<Row>
 				<Section>
-					<Title>Campaign Manager</Title>
+					<Title><a href="/">Campaign Manager</a></Title>
 				</Section>
 				{#if data?.user}
 					<Button color="secondary" href="/logout">Logout</Button>
