@@ -13,7 +13,6 @@ export const actions: Actions = {
 	default: async ({ request, locals }) => {
 		const formData = await request.formData();
 		const data = Object.fromEntries(formData.entries());
-		//console.log(data);
 		if (isLogin(data)) {
 			try {
 				await locals.pb?.collection('users').authWithPassword(data.username, data.password);

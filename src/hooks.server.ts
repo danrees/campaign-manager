@@ -9,7 +9,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	try {
 		if (event.locals.pb.authStore.isValid) {
 			const { record } = await event.locals.pb.collection('users').authRefresh();
-			event.locals.user = { name: record.name };
+			event.locals.user = { name: record.name, id: record.id };
 			console.log(event.locals.user);
 		}
 	} catch (err) {
