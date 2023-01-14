@@ -2,7 +2,6 @@ import type { Handle } from '@sveltejs/kit';
 import PocketBase from 'pocketbase';
 
 export const handle: Handle = async ({ event, resolve }) => {
-	console.log('loading pb');
 	event.locals.pb = new PocketBase('http://127.0.0.1:8091');
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
 
@@ -10,7 +9,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 		if (event.locals.pb.authStore.isValid) {
 			const { record } = await event.locals.pb.collection('users').authRefresh();
 			event.locals.user = { name: record.name, id: record.id };
-			console.log(event.locals.user);
 		}
 	} catch (err) {
 		event.locals.pb.authStore.clear();
