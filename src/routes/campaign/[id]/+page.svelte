@@ -8,5 +8,6 @@
 <div>
 	{#if data?.campaign}
 		<Campaign campaign={data?.campaign} notes={data.notes} />
+		<a href={`/campaign/${data.campaign.id}/page`}>Edit Pages</a>
 	{/if}
 </div>
